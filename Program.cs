@@ -9,7 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddCascadingValue<ViewState>((s) => CascadingValueNotifying.CreateNotifying<ViewState>(new ViewState(), false));
+builder.Services.AddCascadingValue((s) => {
+    var viewState = new ViewState();   
+    return CascadingValueNotifying.CreateNotifying(viewState, false);
+});
 
 var app = builder.Build();
 
