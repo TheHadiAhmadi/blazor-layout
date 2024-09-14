@@ -1,0 +1,17 @@
+@rendermode InteractiveServer
+<h1>Component 2</h1>
+<div>
+    <button @onclick="@OnClick">Increment</button>
+
+    @viewState.Value
+</div>
+
+@code {
+    [CascadingParameter]
+    public ViewState viewState { get; set; } = default!;
+
+    public void OnClick() {
+        Console.WriteLine("Clicked 2");
+        viewState.Increment();
+    }
+}
